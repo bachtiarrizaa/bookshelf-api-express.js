@@ -1,7 +1,7 @@
 const { Book } = require('../../models');
 const { nanoid } = require('nanoid');
 
-const createBook = async (req, res) => {
+const createBook = async (req, res, next) => {
   try {
     const { 
       name,
@@ -51,11 +51,12 @@ const createBook = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      status: 'error',
-      message: 'Terjadi kesalahan pada server',
-    });
+    // console.error(error);
+    // return res.status(500).json({
+    //   status: 'error',
+    //   message: 'Terjadi kesalahan pada server',
+    // });
+    next(error);
   }
 };
 

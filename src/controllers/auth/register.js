@@ -43,11 +43,12 @@ const register = async (req, res, next) => {
       },
     });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      status: 'error',
-      message: 'Terjadi kesalahan pada server',
-    });
+    // console.error(error);
+    // return res.status(500).json({
+    //   status: 'error',
+    //   message: 'Terjadi kesalahan pada server',
+    // });
+    next(error);
   }
 };
 

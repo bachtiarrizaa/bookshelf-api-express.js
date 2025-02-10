@@ -1,6 +1,6 @@
 const { Book } = require('../../models');
 
-const getBookById = async (req, res) => {
+const getBookById = async (req, res, next) => {
   try {
     const { bookId } = req.params;
     // const book = Book.find((b) => b.id === bookId);
@@ -20,11 +20,12 @@ const getBookById = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      status: 'fail',
-      message: 'Terjadi kesalahan pada server',
-    });
+    // console.log(error);
+    // return res.status(500).json({
+    //   status: 'fail',
+    //   message: 'Terjadi kesalahan pada server',
+    // });
+    next(error);
   }
 };
 

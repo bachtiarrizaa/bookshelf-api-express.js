@@ -1,6 +1,6 @@
 const { Book } = require('../../models');
 
-const deleteBook = async (req, res) => {
+const deleteBook = async (req, res, next) => {
   try {
     const { bookId } = req.params;
 
@@ -23,11 +23,12 @@ const deleteBook = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({
-      status: 'fail',
-      message: 'Terjadi kesalahan pada server',
-    });
+    // console.error(error);
+    // return res.status(500).json({
+    //   status: 'fail',
+    //   message: 'Terjadi kesalahan pada server',
+    // });
+    next(error);
   }
 };
 
