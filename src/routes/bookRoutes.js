@@ -1,10 +1,9 @@
 const express = require('express');
-const { addBook, getAllBooks } = require('../controllers/bookController');
+const bookController = require('../controllers/books')
 
 const router = express.Router();
 
-// Route untuk menambahkan buku
-router.post('/books', addBook);
-router.get('/books', getAllBooks);
+router.post('/create', bookController.createBook);
+router.get('/get-all', bookController.getAllBooks);
 
 module.exports = router;

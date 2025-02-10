@@ -1,9 +1,18 @@
-const { Book } = require('../models');
+const { Book } = require('../../models');
 const { nanoid } = require('nanoid');
 
-const addBook = async (req, res) => {
+const createBook = async (req, res) => {
   try {
-    const { name, year, author, summary, publisher, pageCount, readPage, reading } = req.body;
+    const { 
+      name,
+      year,
+      author,
+      summary,
+      publisher,
+      pageCount,
+      readPage,
+      reading
+    } = req.body;
 
     if (!name) {
       return res.status(400).json({
@@ -30,7 +39,7 @@ const addBook = async (req, res) => {
       readPage,
       finished: pageCount === readPage,
       reading,
-      insertedAt: new Date().toISOString(),
+      insertAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     });
 
@@ -41,7 +50,6 @@ const addBook = async (req, res) => {
         bookId: newBook.id,
       },
     });
-
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -51,24 +59,4 @@ const addBook = async (req, res) => {
   }
 };
 
-const getAllBooks = async (req, res) => {
-    try {
-        const books = await Book.findAll({
-            attributes: ['id', 'name', 'publisher']
-        });
-
-        return res.status(200).json({
-            status: 'success',
-            data: {
-                books: books || []
-            }
-        });
-    } catch (error) {
-        return res.status(500).json({
-            status: 'error',
-            message: error.message
-        });
-    }
-};
-
-module.exports = { addBook, getAllBooks };
+module.exports = createBook;
