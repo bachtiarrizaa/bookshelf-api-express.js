@@ -28,16 +28,15 @@ const updatedBook = async (req, res) => {
       });
     }
 
-    const bookIndex = await Book.findOne({ where: { id: bookId } });
-    if (bookIndex === -1) {
+    const book = await Book.findOne({ where: { id: bookId } });
+    if (!book) {
       return res.status(404).json({
         status: 'fail',
         message: 'Gagal memperbarui buku. Id tidak ditemukan',
       });
     }
 
-    Book[bookIndex] = {
-      ...Book[bookIndex],
+    await book.update ({
       name,
       year,
       author,
@@ -49,7 +48,7 @@ const updatedBook = async (req, res) => {
       reading,
       finished: pageCount === readPage,
       updatedat: new Date().toISOString(),
-    };
+    });
 
     return res.status(200).json({
       status: 'success',
