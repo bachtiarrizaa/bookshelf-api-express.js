@@ -9,6 +9,13 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use('/api', routes);
 
+app.get('/', (req, res) => {
+  res.json({
+    status: 'success',
+    message: 'Welcome to My API',
+  });
+});
+
 app.use((req, res) => {
   res.status(404).json({
     status: 'error',
