@@ -2,11 +2,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { User, Role } = require('../../models');
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
-    // Cek apakah email sudah terdaftar
     const findEmail = await User.findOne({ where: { email } });
 
     if (findEmail) {
@@ -16,7 +15,6 @@ const register = async (req, res) => {
       });
     }
 
-    // Validasi panjang password
     if (password.length < 8) {
       return res.status(400).json({
         status: 'fail',
@@ -24,13 +22,10 @@ const register = async (req, res) => {
       });
     }
 
-    // Hash password
     const hashPassword = await bcrypt.hash(password, 10);
 
-    // Set role_id default untuk User
     const defaultRoleId = 2;
 
-    // Buat user baru
     const created = await User.create({
       name,
       email,
@@ -44,7 +39,7 @@ const register = async (req, res) => {
       data: {
         name: created.name,
         email: created.email,
-        role_id: created.role_id, // Perbaikan di sini
+        role_id: created.role_id,
       },
     });
   } catch (error) {
