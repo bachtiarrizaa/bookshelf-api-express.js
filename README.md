@@ -45,11 +45,12 @@ Aplikasi ini adalah RESTful API untuk manajemen buku menggunakan Node.js, Expres
    ```
 3. Konfigurasi file `.env`:
    ```
-   JWT_SECRET=your_secret_key
+   PORT=5000
    DB_HOST=localhost
    DB_USER=root
-   DB_PASS=password
-   DB_NAME=book_db
+   DB_PASS=
+   DB_NAME=bookshelf_db
+   JWT_SECRET=your_secret_key
    ```
 4. Jalankan migrasi database:
    ```sh
