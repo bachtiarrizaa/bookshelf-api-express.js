@@ -13,4 +13,4 @@ Book Management API adalah RESTful API sederhana untuk mengelola data buku. API 
 Node.js - Runtime JavaScript <br>
 Express.js - Framework backend <br>
 Sequelize - ORM untuk database <br>
-PostgreSQL/MySQL - Database (sesuai konfigurasi Sequelize) <br>
+MySQL - Database (sesuai konfigurasi Sequelize) <br>
