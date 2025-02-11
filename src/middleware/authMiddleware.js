@@ -50,7 +50,6 @@ const mustAdmin = async (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
 
-    // Cek apakah token masuk dalam blacklist
     const isBlacklisted = await BlacklistToken.findOne({ where: { token } });
     if (isBlacklisted) {
       return res.status(401).json({
@@ -61,7 +60,7 @@ const mustAdmin = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (decoded.role !== 1) {
+    if (decoded.role !== 'admin') {
       return res.status(403).json({
         status: 'fail',
         message: 'Access denied! Only admin can access this resource.',
