@@ -34,7 +34,6 @@ const register = async (req, res, next) => {
 
     const defaultRoleId = 2;
 
-    // Pastikan role_id valid
     const roleExists = await Role.findByPk(defaultRoleId);
     if (!roleExists) {
       return res.status(400).json({
