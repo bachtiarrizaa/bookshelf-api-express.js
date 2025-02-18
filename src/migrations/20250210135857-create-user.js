@@ -18,6 +18,15 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      ava: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.ENUM('Male', 'Female')
+      },
+      date_of_birthday: {
+        type: Sequelize.DATEONLY
+      },
       role_id: {
         type: Sequelize.INTEGER
       },
