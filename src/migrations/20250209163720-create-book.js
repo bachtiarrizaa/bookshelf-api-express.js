@@ -38,6 +38,9 @@ module.exports = {
       insertedAt: {
         type: Sequelize.DATE
       },
+      user_id: {
+        type: Sequelize.INTEGER
+      },
       updatedAt: {
         type: Sequelize.DATE
       },
