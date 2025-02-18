@@ -32,7 +32,7 @@ const register = async (req, res, next) => {
 
     const hashPassword = await bcrypt.hash(password, 10);
 
-    const defaultRoleId = 2;
+    const defaultRoleId = 1;
 
     const roleExists = await Role.findByPk(defaultRoleId);
     if (!roleExists) {
